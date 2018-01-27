@@ -299,7 +299,11 @@ TermWidget::TermWidget(TerminalConfig &cfg, QWidget * parent)
     connect(m_term, SIGNAL(finished()), this, SIGNAL(finished()));
     connect(m_term, SIGNAL(termGetFocus()), this, SLOT(term_termGetFocus()));
     connect(m_term, SIGNAL(termLostFocus()), this, SLOT(term_termLostFocus()));
-    connect(m_term, &QTermWidget::titleChanged, this, [this] { emit termTitleChanged(m_term->title(), m_term->icon()); });
+}
+
+void TermWidget::term_autoTitleChanged()
+{
+    emit termTitleChanged(m_term->title(), m_term->icon());
 }
 
 void TermWidget::propertiesChanged()
@@ -310,6 +314,14 @@ void TermWidget::propertiesChanged()
         m_layout->setContentsMargins(0, 0, 0, 0);
 
     m_term->propertiesChanged();
+
+    if (Properties::Instance()->autoChangeTitle) {
+        connect(m_term, &QTermWidget::titleChanged, this, &TermWidget::term_autoTitleChanged);
+	printf("=== connect\n");
+    } else {
+        disconnect(m_term, &QTermWidget::titleChanged, this, &TermWidget::term_autoTitleChanged);
+	printf("=== discconnect\n");
+    }
 }
 
 void TermWidget::term_termGetFocus()

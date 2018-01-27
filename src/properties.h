@@ -97,6 +97,7 @@ class Properties
         int dropWidht;
         int dropHeight;
 
+        bool autoChangeTitle;
         bool changeWindowTitle;
         bool changeWindowIcon;
         bool enabledBidiSupport;

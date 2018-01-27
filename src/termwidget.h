@@ -98,6 +98,7 @@ class TermWidget : public QWidget, public DBusAddressable
     private slots:
         void term_termGetFocus();
         void term_termLostFocus();
+        void term_autoTitleChanged();
 };
 
 #endif

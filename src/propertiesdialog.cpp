@@ -142,6 +142,7 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
 
     terminalPresetComboBox->setCurrentIndex(Properties::Instance()->terminalsPreset);
 
+    autoChangeTitleCheckBox->setChecked(Properties::Instance()->autoChangeTitle);
     changeWindowTitleCheckBox->setChecked(Properties::Instance()->changeWindowTitle);
     changeWindowIconCheckBox->setChecked(Properties::Instance()->changeWindowIcon);
     enabledBidiSupportCheckBox->setChecked(Properties::Instance()->enabledBidiSupport);
@@ -217,6 +218,7 @@ void PropertiesDialog::apply()
 
     Properties::Instance()->terminalsPreset = terminalPresetComboBox->currentIndex();
 
+    Properties::Instance()->autoChangeTitle = autoChangeTitleCheckBox->isChecked();
     Properties::Instance()->changeWindowTitle = changeWindowTitleCheckBox->isChecked();
     Properties::Instance()->changeWindowIcon = changeWindowIconCheckBox->isChecked();
     Properties::Instance()->enabledBidiSupport = enabledBidiSupportCheckBox->isChecked();

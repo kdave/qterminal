@@ -140,6 +140,7 @@ void Properties::loadSettings()
     dropHeight = m_settings->value("Height", 45).toInt();
     m_settings->endGroup();
 
+    autoChangeTitle = m_settings->value("autoChangeTitle", true).toBool();
     changeWindowTitle = m_settings->value("ChangeWindowTitle", true).toBool();
     changeWindowIcon = m_settings->value("ChangeWindowIcon", true).toBool();
     enabledBidiSupport = m_settings->value("enabledBidiSupport", true).toBool();
@@ -234,6 +235,7 @@ void Properties::saveSettings()
     m_settings->setValue("Height", dropHeight);
     m_settings->endGroup();
 
+    m_settings->setValue("autoChangeTitle", autoChangeTitle);
     m_settings->setValue("ChangeWindowTitle", changeWindowTitle);
     m_settings->setValue("ChangeWindowIcon", changeWindowIcon);
     m_settings->setValue("enabledBidiSupport", enabledBidiSupport);
